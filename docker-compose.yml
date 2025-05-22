@@ -1,0 +1,20 @@
+name: "kiz8-main"
+
+services:
+  database:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    command: -p ${DATABASE_PORT}
+    volumes:
+      - database-volume:/var/lib/postgresql/data
+      - .dumps:/dumps
+
+
+volumes:
+  database-volume:

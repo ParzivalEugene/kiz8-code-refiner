@@ -1,23 +1,88 @@
-# Create T3 App
+# Code Refiner
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A robust application with authentication using Better Auth including GitHub OAuth integration.
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- User authentication with email and password
+- Social sign-in with GitHub
+- Protected routes
+- Responsive UI with Tailwind CSS
+- Prisma ORM for database operations
+- tRPC for type-safe API communication
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Tech Stack
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+This project is built with the [T3 Stack](https://create.t3.gg/):
 
-## Learn More
+- [Next.js](https://nextjs.org) - React framework for server-rendered applications
+- [Better Auth](https://www.better-auth.com/) - Modern authentication library
+- [Prisma](https://prisma.io) - Type-safe ORM for database access
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [tRPC](https://trpc.io) - End-to-end typesafe APIs
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd code-refiner
+```
+
+### 2. Install dependencies
+
+```bash
+pnpm install
+```
+
+### 3. Setup environment variables
+
+Copy the example environment file and update the values:
+
+```bash
+cp .env.example .env
+```
+
+For GitHub authentication, you'll need to [create a new OAuth application](https://github.com/settings/applications/new) on GitHub:
+
+- Application name: Code Refiner (or your preferred name)
+- Homepage URL: http://localhost:3000
+- Authorization callback URL: http://localhost:3000/api/auth/callback/github
+
+After creating, copy the Client ID and Client Secret to your .env file:
+
+```
+GITHUB_CLIENT_ID=your_client_id_here
+GITHUB_CLIENT_SECRET=your_client_secret_here
+```
+
+### 4. Database setup
+
+Start your PostgreSQL database (using the provided script or your preferred method):
+
+```bash
+./start-database.sh
+```
+
+Apply the database migrations:
+
+```bash
+pnpm db:migrate
+```
+
+### 5. Run the development server
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## Authentication Routes
+
+- Sign in/Sign up: `/auth`
+- Home (protected): `/`
 
 - [Documentation](https://create.t3.gg/)
 - [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
